@@ -99,6 +99,7 @@ public class user extends javax.swing.JFrame {
                      v2.add(rs.getString("name"));
                      v2.add(rs.getString("phone"));
                      v2.add(rs.getString("username"));
+                      v2.add(rs.getString("utype"));
                      
                  } 
                  d.addRow(v2);
@@ -237,9 +238,14 @@ public class user extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Name", "Phone", "Username"
+                "ID", "Name", "Phone", "Username", "UserType"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("create db & table");
@@ -250,6 +256,11 @@ public class user extends javax.swing.JFrame {
         });
 
         jButton2.setText("save");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -257,12 +268,32 @@ public class user extends javax.swing.JFrame {
         });
 
         jButton3.setText("edit");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("delete");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("clear");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("close");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -274,11 +305,6 @@ public class user extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jButton1)
@@ -295,7 +321,12 @@ public class user extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addComponent(jLabel6)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(360, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -406,7 +437,7 @@ public class user extends javax.swing.JFrame {
             txtpass.setText("");
             txtutype.setSelectedIndex(-1);
             txtname.requestFocus();
-            
+            user_load();
             
                } catch (SQLException ex) {
             Logger.getLogger(user.class.getName()).log(Level.SEVERE, null, ex);
@@ -414,6 +445,118 @@ public class user extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        d = (DefaultTableModel)jTable1.getModel();
+        int selectIndex = jTable1.getSelectedRow();
+        
+        String id = d.getValueAt(selectIndex,0).toString();
+        txtname.setText(d.getValueAt(selectIndex,1).toString());
+        txtphone.setText(d.getValueAt(selectIndex,2).toString());
+        txtuname.setText(d.getValueAt(selectIndex,3).toString());
+        
+        txtutype.setSelectedItem(d.getValueAt(selectIndex,4).toString());
+        jButton2.setEnabled(false);
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+         try {
+            // TODO add your handling code here:
+            d = (DefaultTableModel)jTable1.getModel();
+            int selectIndex = jTable1.getSelectedRow();
+        
+            String id = d.getValueAt(selectIndex,0).toString();
+            String name= txtname.getText();
+            String phone= txtphone.getText();
+            String uname = txtuname.getText();
+            String pass = txtpass.getText();
+            String utype = txtutype.getSelectedItem().toString();
+             connectsc();
+            st = conn.prepareStatement("update user set name= ?, phone= ?, username= ?,utype= ? where id= ?");
+           
+            st.setString(1, name);
+            st.setString(2, phone);
+            st.setString(3, uname);
+            
+            st.setString(4, utype);
+            st.setString(5, id);
+            
+            st.executeUpdate();
+            
+            
+            JOptionPane.showMessageDialog(this,"user edited");
+             jButton2.setEnabled(true);
+            txtname.setText("");
+            txtphone.setText("");
+            txtuname.setText("");
+            txtpass.setText("");
+            txtutype.setSelectedIndex(-1);
+            txtname.requestFocus();
+            user_load();
+            
+               } catch (SQLException ex) {
+            Logger.getLogger(user.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        jButton2.setEnabled(true);
+            txtname.setText("");
+            txtphone.setText("");
+            txtuname.setText("");
+            txtpass.setText("");
+            txtutype.setSelectedIndex(-1);
+            txtname.requestFocus();
+            user_load();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        
+         try {
+            // TODO add your handling code here:
+            d = (DefaultTableModel)jTable1.getModel();
+            int selectIndex = jTable1.getSelectedRow();
+        
+            String id = d.getValueAt(selectIndex,0).toString();
+            
+             connectsc();
+            st = conn.prepareStatement("delete from user where id= ?");
+           
+            
+            st.setString(1, id);
+            
+            st.executeUpdate();
+            
+            
+            JOptionPane.showMessageDialog(this,"user deleted");
+             jButton2.setEnabled(true);
+            txtname.setText("");
+            txtphone.setText("");
+            txtuname.setText("");
+            txtpass.setText("");
+            txtutype.setSelectedIndex(-1);
+            txtname.requestFocus();
+            user_load();
+            
+               } catch (SQLException ex) {
+            Logger.getLogger(user.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
