@@ -116,7 +116,7 @@ public class user extends javax.swing.JFrame {
             String sql = "CREATE TABLE USER " +
                    "(id INTEGER not NULL AUTO_INCREMENT, " +
                    " name VARCHAR(255), " + 
-                   " phone INTEGER, " + 
+                   " phone VARCHAR(255), " + 
                    " username VARCHAR(255), " +
                    " password VARCHAR(255)," +
                    " utype VARCHAR(255)," +
@@ -346,7 +346,7 @@ public class user extends javax.swing.JFrame {
                             .addComponent(jButton5)
                             .addComponent(jButton6)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(174, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
