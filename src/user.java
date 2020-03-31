@@ -123,6 +123,19 @@ public class user extends javax.swing.JFrame {
                    " PRIMARY KEY ( id ))"; 
 
             pst.executeUpdate(sql);
+             sql = "CREATE TABLE CLASS " +
+                   "(cid INTEGER not NULL AUTO_INCREMENT, " +
+                   " classname VARCHAR(255), " + 
+                   " section VARCHAR(255)," +
+                   " PRIMARY KEY ( cid ))"; 
+
+            pst.executeUpdate(sql);
+            sql = "CREATE TABLE SUBJECT " +
+                   "(sid INTEGER not NULL AUTO_INCREMENT, " +
+                   " subjectname VARCHAR(255), " + 
+                   " PRIMARY KEY ( sid ))"; 
+
+            pst.executeUpdate(sql);
              }catch(SQLException se){
               //Handle errors for JDBC
              se.printStackTrace();
