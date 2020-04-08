@@ -134,6 +134,16 @@ public class user extends javax.swing.JFrame {
                    "(sid INTEGER not NULL AUTO_INCREMENT, " +
                    " subjectname VARCHAR(255), " + 
                    " PRIMARY KEY ( sid ))"; 
+            pst.executeUpdate(sql);
+            sql = "CREATE TABLE EXAM " +
+                   "(eid INTEGER not NULL AUTO_INCREMENT, " +
+                   " ename VARCHAR(255), " + 
+                   " term VARCHAR(255), " +
+                   " date VARCHAR(255), " +
+                   " class VARCHAR(255), " +
+                   " section VARCHAR(255), " +
+                   " subject VARCHAR(255), " +
+                   " PRIMARY KEY ( eid ))"; 
 
             pst.executeUpdate(sql);
              }catch(SQLException se){
