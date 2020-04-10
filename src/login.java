@@ -227,8 +227,14 @@ public class login extends javax.swing.JFrame {
              {
                  int id =rs.getInt("id");
                  this.setVisible(false);
+                 if(utype.equals("admin"))
+                 {
                  new Main(id,username,utype).setVisible(true);
-                 
+                 }
+                 else
+                 {
+                     new TeacherMain(id,username,utype).setVisible(true);
+                 }
              }
              else
              {

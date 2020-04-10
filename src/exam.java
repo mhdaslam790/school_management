@@ -423,11 +423,11 @@ public class exam extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtename.setText("");
         txtterm.setSelectedIndex(-1);
-        
+        txtdate.setDate(null);
         txtclass.setSelectedIndex(-1);
         txtsection.setSelectedIndex(-1);
         txtsubject.setSelectedIndex(-1);
-        
+        jButton1.setEnabled(true);
         
         
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -460,7 +460,7 @@ public class exam extends javax.swing.JFrame {
              jButton1.setEnabled(true);
               txtename.setText("");
               txtterm.setSelectedIndex(-1);
-        
+              txtdate.setDate(null);   
               txtclass.setSelectedIndex(-1);
               txtsection.setSelectedIndex(-1);
               txtsubject.setSelectedIndex(-1);

@@ -146,6 +146,41 @@ public class user extends javax.swing.JFrame {
                    " PRIMARY KEY ( eid ))"; 
 
             pst.executeUpdate(sql);
+            sql = "CREATE TABLE STUDENT " +
+                   "(stid INTEGER not NULL AUTO_INCREMENT, " +
+                   " stname VARCHAR(255), " + 
+                   " pname VARCHAR(255), " +
+                   " dob VARCHAR(255), " +
+                   " gender VARCHAR(255), " +
+                   " phone VARCHAR(255), " +
+                   " address VARCHAR(255), " +
+                   " class VARCHAR(255), " +
+                   " section VARCHAR(255), " +
+                   " PRIMARY KEY ( stid ))"; 
+
+            pst.executeUpdate(sql);
+            sql = "CREATE TABLE TEACHER " +
+                   "(tid INTEGER not NULL AUTO_INCREMENT, " +
+                   " name VARCHAR(255), " + 
+                   " qual VARCHAR(255), " +
+                   " salary VARCHAR(255), " +
+                   " phone VARCHAR(255), " +
+                   " email VARCHAR(255), " +
+                   " address VARCHAR(255), " +
+                   " PRIMARY KEY ( tid ))"; 
+
+            pst.executeUpdate(sql);
+            sql = "CREATE TABLE MARKS " +
+                   "(id INTEGER not NULL AUTO_INCREMENT, " +
+                   " stid INTEGER(15), " + 
+                   " class VARCHAR(255), " +
+                   " subject VARCHAR(255), " +
+                   " marks VARCHAR(255), " +
+                   " term VARCHAR(255), " +
+                   " log_id INTEGER(15), " +
+                   " PRIMARY KEY ( id ))"; 
+
+            pst.executeUpdate(sql);
              }catch(SQLException se){
               //Handle errors for JDBC
              se.printStackTrace();
@@ -202,7 +237,7 @@ public class user extends javax.swing.JFrame {
 
         jLabel5.setText("UserType");
 
-        txtutype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Teeacher" }));
+        txtutype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Teacher" }));
         txtutype.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtutypeActionPerformed(evt);
@@ -344,7 +379,7 @@ public class user extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addComponent(jLabel6)))
-                .addContainerGap(360, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -358,17 +393,16 @@ public class user extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4)
-                            .addComponent(jButton5)
-                            .addComponent(jButton6)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5)
+                    .addComponent(jButton6))
                 .addContainerGap(174, Short.MAX_VALUE))
         );
 
