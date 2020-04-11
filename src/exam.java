@@ -405,7 +405,13 @@ public class exam extends javax.swing.JFrame {
             
             
             JOptionPane.showMessageDialog(this,"exam added");
-          
+           txtename.setText("");
+        txtterm.setSelectedIndex(-1);
+        txtdate.setDate(null);
+        txtclass.setSelectedIndex(-1);
+        txtsection.setSelectedIndex(-1);
+        txtsubject.setSelectedIndex(-1);
+        jButton1.setEnabled(true);
             
            
             

@@ -167,6 +167,7 @@ public class user extends javax.swing.JFrame {
                    " phone VARCHAR(255), " +
                    " email VARCHAR(255), " +
                    " address VARCHAR(255), " +
+                    " log_id INTEGER(15), " +
                    " PRIMARY KEY ( tid ))"; 
 
             pst.executeUpdate(sql);
@@ -177,7 +178,6 @@ public class user extends javax.swing.JFrame {
                    " subject VARCHAR(255), " +
                    " marks VARCHAR(255), " +
                    " term VARCHAR(255), " +
-                   " log_id INTEGER(15), " +
                    " PRIMARY KEY ( id ))"; 
 
             pst.executeUpdate(sql);
