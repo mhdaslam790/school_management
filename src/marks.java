@@ -32,7 +32,6 @@ public class marks extends javax.swing.JFrame {
         connectsc();
         load_subject();
         marks_load();
-        load_class();
         load_subject();
     }
  Connection conn = null;
@@ -85,6 +84,7 @@ public class marks extends javax.swing.JFrame {
       public void load_class()
      {
         try {
+            txtclass.setSelectedItem(-1);
             connectsc();
             st = conn.prepareStatement("select Distinct classname from class");
             rs = st.executeQuery();
@@ -179,6 +179,7 @@ public class marks extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(0, 51, 204));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Marks");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -388,7 +389,7 @@ public class marks extends javax.swing.JFrame {
         // TODO add your handling code here:
     try {
         String sid =txtno.getText();
-        
+         txtclass.setSelectedItem(-1);
         
         st = conn.prepareStatement("select * from student where stid =?");
         
@@ -409,6 +410,7 @@ public class marks extends javax.swing.JFrame {
                 txtstname.setText(name.trim());
                 String classs = rs.getString("class");
                 txtclass.addItem(classs.trim());
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(marks.class.getName()).log(Level.SEVERE, null, ex);

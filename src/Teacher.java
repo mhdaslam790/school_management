@@ -158,6 +158,7 @@ public class Teacher extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 51, 204));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Teacher");
 
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -429,7 +430,7 @@ public class Teacher extends javax.swing.JFrame {
             txtemail.setText("");
             txtaddress.setText("");
              txtname.requestFocus();
-            
+             teacher_load();
                } catch (SQLException ex) {
             Logger.getLogger(user.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -446,9 +447,9 @@ public class Teacher extends javax.swing.JFrame {
         txtname.setText(d.getValueAt(selectIndex,1).toString());
         txtqual.setText(d.getValueAt(selectIndex,2).toString());
         
-            txtsal.setText(d.getValueAt(selectIndex,5).toString());
-            txtphone.setText(d.getValueAt(selectIndex,6).toString());
-             txtemail.setText(d.getValueAt(selectIndex,6).toString());
+            txtsal.setText(d.getValueAt(selectIndex,3).toString());
+            txtphone.setText(d.getValueAt(selectIndex,4).toString());
+             txtemail.setText(d.getValueAt(selectIndex,5).toString());
              txtaddress.setText(d.getValueAt(selectIndex,6).toString());
         
              jButton1.setEnabled(false);
